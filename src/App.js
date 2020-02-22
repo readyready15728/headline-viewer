@@ -11,6 +11,8 @@ class Ticker extends React.Component {
       index: 0
     };
     
+    console.log(this.props.category);
+
     fetch(`https://newsapi.org/v2/top-headlines?category=${this.props.category}&apiKey=058acf6215d046a8a637f431c428e489&country=us`)
       .then((response) => response.json())
       .then((data) => this.setState({headlines: data}));
@@ -25,7 +27,13 @@ class Ticker extends React.Component {
           }
         }
       }  
-    }, 10000);
+    }, 1000);
+  }
+
+  componentDidMount() {
+    fetch(`https://newsapi.org/v2/top-headlines?category=${this.props.category}&apiKey=058acf6215d046a8a637f431c428e489&country=us`)
+      .then((response) => response.json())
+      .then((data) => this.setState({headlines: data}));
   }
   
   render() {
